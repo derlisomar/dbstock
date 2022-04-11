@@ -1,0 +1,1290 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.5
+-- Dumped by pg_dump version 11.5
+
+-- Started on 2021-06-17 22:30:34
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 196 (class 1259 OID 99418)
+-- Name: apariencia; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.apariencia (
+    apa_id integer NOT NULL,
+    apa_nombremenu character varying,
+    apa_urlmenu character varying,
+    apa_nombresubmenu character varying,
+    apa_urlsubmenu character varying
+);
+
+
+ALTER TABLE public.apariencia OWNER TO postgres;
+
+--
+-- TOC entry 197 (class 1259 OID 99424)
+-- Name: apariencia_apa_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.apariencia_apa_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.apariencia_apa_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3068 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: apariencia_apa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.apariencia_apa_id_seq OWNED BY public.apariencia.apa_id;
+
+
+--
+-- TOC entry 198 (class 1259 OID 99426)
+-- Name: caja; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.caja (
+    caj_codigo integer NOT NULL,
+    caj_descri character varying,
+    caj_suc integer,
+    caj_montogs integer
+);
+
+
+ALTER TABLE public.caja OWNER TO postgres;
+
+--
+-- TOC entry 199 (class 1259 OID 99432)
+-- Name: cierrecaja; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.cierrecaja (
+    ci_id integer NOT NULL,
+    ci_fechaape date,
+    ci_fechacierre date,
+    ci_usuariocierre character varying,
+    ci_nro integer,
+    ci_credito integer,
+    ci_cobranza integer,
+    ci_ingreso integer,
+    ci_contado integer,
+    ci_egreso integer,
+    ci_totalingreso integer,
+    ci_totalegreso integer,
+    ci_totalcaja integer,
+    ci_usuarioaper character varying,
+    ci_montoaper integer,
+    ci_estado integer,
+    ci_sucursal character varying(25)
+);
+
+
+ALTER TABLE public.cierrecaja OWNER TO postgres;
+
+--
+-- TOC entry 200 (class 1259 OID 99438)
+-- Name: cierrecaja_ci_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.cierrecaja_ci_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cierrecaja_ci_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3069 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: cierrecaja_ci_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.cierrecaja_ci_id_seq OWNED BY public.cierrecaja.ci_id;
+
+
+--
+-- TOC entry 201 (class 1259 OID 99440)
+-- Name: clientes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.clientes (
+    cli_codigo integer NOT NULL,
+    cli_cedula character varying,
+    cli_nombre character varying,
+    cli_direccion character varying,
+    cli_telefono character varying,
+    cli_celular character varying,
+    cli_email character varying,
+    cli_limite numeric
+);
+
+
+ALTER TABLE public.clientes OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 99446)
+-- Name: clientes_cli_codigo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.clientes_cli_codigo_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.clientes_cli_codigo_seq OWNER TO postgres;
+
+--
+-- TOC entry 3070 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: clientes_cli_codigo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.clientes_cli_codigo_seq OWNED BY public.clientes.cli_codigo;
+
+
+--
+-- TOC entry 203 (class 1259 OID 99448)
+-- Name: cobranza; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.cobranza (
+    cb_id integer NOT NULL,
+    cb_nrocobranza integer,
+    cb_cli_id character varying,
+    cb_cli_nomb character varying,
+    cb_fechacredito date,
+    cb_fechapago date,
+    cb_montocre numeric,
+    cb_montopago numeric,
+    cb_montosaldo numeric
+);
+
+
+ALTER TABLE public.cobranza OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 99454)
+-- Name: cobranza_cb_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.cobranza_cb_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cobranza_cb_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3071 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: cobranza_cb_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.cobranza_cb_id_seq OWNED BY public.cobranza.cb_id;
+
+
+--
+-- TOC entry 205 (class 1259 OID 99456)
+-- Name: config; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.config (
+    conf_id integer NOT NULL,
+    conf_denominacion character varying,
+    conf_ruc character varying,
+    conf_telefono character varying,
+    conf_direccion character varying,
+    conf_actividad character varying,
+    conf_email character varying,
+    conf_web character varying,
+    conf_autoimpresor character varying,
+    conf_timbrado character varying,
+    conf_timbradoini character varying,
+    conf_timbradoven character varying,
+    conf_sucursal character varying,
+    conf_ciudad character varying,
+    conf_url character varying,
+    conf_iva1 numeric,
+    conf_divisor1 numeric,
+    conf_iva2 numeric,
+    conf_divisor2 numeric,
+    conf_factura character varying,
+    conf_buspro character varying,
+    conf_licencia date
+);
+
+
+ALTER TABLE public.config OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 99462)
+-- Name: config_conf_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.config_conf_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.config_conf_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3072 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: config_conf_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.config_conf_id_seq OWNED BY public.config.conf_id;
+
+
+--
+-- TOC entry 207 (class 1259 OID 99464)
+-- Name: contador; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.contador (
+    cont_id integer NOT NULL,
+    caj_codigo integer,
+    su_codigo integer,
+    cont_secuencia integer
+);
+
+
+ALTER TABLE public.contador OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 99467)
+-- Name: contador_cont_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.contador_cont_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.contador_cont_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3073 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: contador_cont_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.contador_cont_id_seq OWNED BY public.contador.cont_id;
+
+
+--
+-- TOC entry 209 (class 1259 OID 99469)
+-- Name: cotizar; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.cotizar (
+    coti_fecha date,
+    coti_dolar double precision,
+    coti_real double precision,
+    coti_peso double precision,
+    coti_id numeric NOT NULL
+);
+
+
+ALTER TABLE public.cotizar OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 99475)
+-- Name: tmpedido; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tmpedido (
+    pedido_cod integer NOT NULL,
+    pedido_cod_prod integer,
+    pedido_desc character varying,
+    pedido_cant integer,
+    pedido_fecha date,
+    pedido_proveedor character varying,
+    pedido_id integer,
+    pedido_preciocompra integer,
+    pedido_entregado integer,
+    pedido_bolean boolean,
+    pedido_suc integer,
+    pedido_total integer
+);
+
+
+ALTER TABLE public.tmpedido OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 99481)
+-- Name: tmpedido_pedido_cod_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.tmpedido_pedido_cod_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tmpedido_pedido_cod_seq OWNER TO postgres;
+
+--
+-- TOC entry 3074 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: tmpedido_pedido_cod_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.tmpedido_pedido_cod_seq OWNED BY public.tmpedido.pedido_cod;
+
+
+--
+-- TOC entry 212 (class 1259 OID 99483)
+-- Name: detallespedido; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.detallespedido (
+    pedido_cod integer DEFAULT nextval('public.tmpedido_pedido_cod_seq'::regclass) NOT NULL,
+    pedido_cod_prod integer,
+    pedido_desc character varying,
+    pedido_cant integer,
+    pedido_fecha date,
+    pedido_proveedor character varying,
+    pedido_id integer,
+    pedido_preciocompra integer,
+    pedido_entregado integer,
+    pedido_bolean boolean,
+    pedido_suc integer,
+    pedido_total integer
+);
+
+
+ALTER TABLE public.detallespedido OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 99490)
+-- Name: detallevta; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.detallevta (
+    detvta_id_prod integer,
+    detvta_id_lector character varying,
+    detvta_nomb_pro character varying,
+    detvta_cant integer,
+    detvta_proveedor character varying,
+    detvta_fecha date,
+    detvta_num_deta integer,
+    detvta_preciogs numeric,
+    detvta_id integer,
+    detvta_preciototal numeric,
+    detvta_id_lg character varying,
+    detvta_caja character varying,
+    detvta_suc character varying,
+    detvta_iva5 numeric(10,1),
+    detvta_iva10 numeric(10,1),
+    detvta_exenta numeric(10,1)
+);
+
+
+ALTER TABLE public.detallevta OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 99496)
+-- Name: detcobranza; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.detcobranza (
+    cbdeta_id integer NOT NULL,
+    cbdeta_cli_id character varying,
+    cbdeta_cli_nomb character varying,
+    cbdeta_nrocobranza integer,
+    cbdeta_montopago integer,
+    cbdeta_obs character varying,
+    cbdeta_fecha date,
+    cbdeta_usu_autor character varying,
+    ci_estado integer
+);
+
+
+ALTER TABLE public.detcobranza OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 99502)
+-- Name: detcobranza_cbdeta_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.detcobranza_cbdeta_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.detcobranza_cbdeta_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3075 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: detcobranza_cbdeta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.detcobranza_cbdeta_id_seq OWNED BY public.detcobranza.cbdeta_id;
+
+
+--
+-- TOC entry 216 (class 1259 OID 99504)
+-- Name: detpresupuesto; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.detpresupuesto (
+    detvta_id_prod integer,
+    detvta_id_lector character varying,
+    detvta_nomb_pro character varying,
+    detvta_cant integer,
+    detvta_proveedor character varying,
+    detvta_fecha date,
+    detvta_num_deta integer,
+    detvta_preciogs numeric,
+    detvta_id integer,
+    detvta_preciototal numeric,
+    detvta_id_lg character varying,
+    detvta_caja character varying,
+    detvta_suc character varying,
+    detvta_iva5 numeric(10,1),
+    detvta_iva10 numeric(10,1),
+    detvta_exenta numeric(10,1)
+);
+
+
+ALTER TABLE public.detpresupuesto OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 99510)
+-- Name: gastos; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.gastos (
+    gas_id integer NOT NULL,
+    gas_suc integer,
+    gas_cajaid integer,
+    gas_cajades character varying,
+    gas_montogs integer,
+    gas_obs character varying,
+    gas_fecha date,
+    gas_sucdes character varying,
+    gas_usuario character varying,
+    ci_estado integer
+);
+
+
+ALTER TABLE public.gastos OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 99516)
+-- Name: gastos_gas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.gastos_gas_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.gastos_gas_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3076 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: gastos_gas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.gastos_gas_id_seq OWNED BY public.gastos.gas_id;
+
+
+--
+-- TOC entry 219 (class 1259 OID 99518)
+-- Name: grupopro; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.grupopro (
+    grup_id integer NOT NULL,
+    grup_desc character varying
+);
+
+
+ALTER TABLE public.grupopro OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 99524)
+-- Name: grupopro_grup_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.grupopro_grup_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.grupopro_grup_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3077 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: grupopro_grup_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.grupopro_grup_id_seq OWNED BY public.grupopro.grup_id;
+
+
+--
+-- TOC entry 221 (class 1259 OID 99526)
+-- Name: ingreso; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.ingreso (
+    ing_id integer NOT NULL,
+    ing_sucid integer,
+    ing_sucdes character varying,
+    ing_cajaid integer,
+    ing_cajades character varying,
+    ing_montogs integer,
+    ing_fecha date,
+    ing_usuario character varying,
+    ing_obs character varying,
+    ci_estado integer
+);
+
+
+ALTER TABLE public.ingreso OWNER TO postgres;
+
+--
+-- TOC entry 222 (class 1259 OID 99532)
+-- Name: ingreso_ing_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.ingreso_ing_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ingreso_ing_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3078 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: ingreso_ing_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.ingreso_ing_id_seq OWNED BY public.ingreso.ing_id;
+
+
+--
+-- TOC entry 223 (class 1259 OID 99534)
+-- Name: movimiento_caja; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.movimiento_caja (
+    mov_id integer NOT NULL,
+    mov_fecha date,
+    mov_sucremit integer,
+    mov_sucbenef integer,
+    mov_cajaremit integer,
+    mov_cajabenef integer,
+    mov_montoenvia integer,
+    mov_obsremit character varying,
+    mov_obsbenefi character varying
+);
+
+
+ALTER TABLE public.movimiento_caja OWNER TO postgres;
+
+--
+-- TOC entry 224 (class 1259 OID 99540)
+-- Name: movimiento_caja_mov_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.movimiento_caja_mov_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.movimiento_caja_mov_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3079 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: movimiento_caja_mov_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.movimiento_caja_mov_id_seq OWNED BY public.movimiento_caja.mov_id;
+
+
+--
+-- TOC entry 225 (class 1259 OID 99542)
+-- Name: pedido; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.pedido (
+    ped_num integer NOT NULL,
+    ped_provee character varying,
+    ped_fecha date,
+    ped_obs character varying,
+    ped_condicion character varying,
+    pedido_id integer,
+    ped_monto numeric,
+    ped_estado character varying,
+    ped_suc integer,
+    ped_num_lg character varying,
+    ped_usuario character varying,
+    ped_anulada integer
+);
+
+
+ALTER TABLE public.pedido OWNER TO postgres;
+
+--
+-- TOC entry 226 (class 1259 OID 99548)
+-- Name: pedido_ped_num_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.pedido_ped_num_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pedido_ped_num_seq OWNER TO postgres;
+
+--
+-- TOC entry 3080 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: pedido_ped_num_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.pedido_ped_num_seq OWNED BY public.pedido.ped_num;
+
+
+--
+-- TOC entry 227 (class 1259 OID 99550)
+-- Name: venta; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.venta (
+    vta_num_deta integer,
+    vta_codigo character varying,
+    vta_fecha date,
+    vta_cliente_id character varying,
+    vta_cliente_nom character varying,
+    vta_montogs integer,
+    vta_montous integer,
+    vta_montors integer,
+    vta_montoar integer,
+    vta_czus integer,
+    vta_czrs integer,
+    vta_czar integer,
+    vta_condicion character varying,
+    vta_caja integer,
+    vta_suc integer,
+    vta_importe integer,
+    vta_obs character varying,
+    vta_cant integer,
+    vta_id integer NOT NULL,
+    vta_anulado smallint,
+    vta_vendedor character varying,
+    vta_iva5 integer,
+    vta_iva10 integer,
+    vta_exenta integer,
+    vta_ivatotal integer,
+    vta_liq5 integer,
+    vta_liq10 integer,
+    vta_liqex integer,
+    vta_nrofac character varying,
+    ci_estado integer,
+    vta_tipofac integer
+);
+
+
+ALTER TABLE public.venta OWNER TO postgres;
+
+--
+-- TOC entry 228 (class 1259 OID 99556)
+-- Name: venta_vta_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.venta_vta_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.venta_vta_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3081 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: venta_vta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.venta_vta_id_seq OWNED BY public.venta.vta_id;
+
+
+--
+-- TOC entry 229 (class 1259 OID 99558)
+-- Name: presupuesto; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.presupuesto (
+    vta_num_deta integer,
+    vta_codigo character varying,
+    vta_fecha date,
+    vta_cliente_id character varying,
+    vta_cliente_nom character varying,
+    vta_montogs integer,
+    vta_montous integer,
+    vta_montors integer,
+    vta_montoar integer,
+    vta_czus integer,
+    vta_czrs integer,
+    vta_czar integer,
+    vta_condicion character varying,
+    vta_caja integer,
+    vta_suc integer,
+    vta_importe integer,
+    vta_obs character varying,
+    vta_cant integer,
+    vta_id integer DEFAULT nextval('public.venta_vta_id_seq'::regclass) NOT NULL,
+    vta_anulado smallint,
+    vta_vendedor character varying,
+    vta_iva5 integer,
+    vta_iva10 integer,
+    vta_exenta integer,
+    vta_ivatotal integer,
+    vta_liq5 integer,
+    vta_liq10 integer,
+    vta_liqex integer,
+    vta_nrofac character varying
+);
+
+
+ALTER TABLE public.presupuesto OWNER TO postgres;
+
+--
+-- TOC entry 230 (class 1259 OID 99565)
+-- Name: privilegios; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.privilegios (
+    pri_id integer NOT NULL,
+    pri_desc character varying(15) NOT NULL,
+    pri_obs character varying(70),
+    pri_base_datos integer,
+    pri_adm_usuario integer,
+    pri_usuarios integer,
+    pri_apariencia integer,
+    pri_configuracion integer,
+    pri_sucursal integer,
+    pri_proveedores integer,
+    pri_productos integer,
+    pri_addstock integer,
+    pri_addcaja integer,
+    pri_addcliente integer,
+    pri_grupo_pro integer,
+    pri_cotiza integer,
+    pri_compra integer,
+    pri_pedirealiz integer,
+    pri_confentrega integer,
+    pri_venta integer,
+    pri_presupuesto integer,
+    pri_consultavta integer,
+    pri_consultapresu integer,
+    pri_consultacli integer,
+    pri_consultavendedor integer,
+    pri_saldo integer,
+    pri_movimiento integer,
+    pri_cobranza integer,
+    pri_gasto integer,
+    pri_ingreso integer,
+    pri_listado integer,
+    pri_cierrecaja integer
+);
+
+
+ALTER TABLE public.privilegios OWNER TO postgres;
+
+--
+-- TOC entry 231 (class 1259 OID 99568)
+-- Name: privilegios_pri_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.privilegios_pri_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.privilegios_pri_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3082 (class 0 OID 0)
+-- Dependencies: 231
+-- Name: privilegios_pri_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.privilegios_pri_id_seq OWNED BY public.privilegios.pri_id;
+
+
+--
+-- TOC entry 232 (class 1259 OID 99570)
+-- Name: productos; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.productos (
+    pro_id integer NOT NULL,
+    pro_desc character varying NOT NULL,
+    pro_grupo character varying NOT NULL,
+    pro_preciocompra numeric NOT NULL,
+    pro_ganancia numeric NOT NULL,
+    pro_precioventa numeric NOT NULL,
+    pro_preciomayorista numeric NOT NULL,
+    pro_stock numeric NOT NULL,
+    pro_stockmin numeric NOT NULL,
+    pro_fechaven date NOT NULL,
+    pro_proveedor character varying NOT NULL,
+    pro_obs character varying NOT NULL,
+    pro_lector character varying NOT NULL,
+    pro_suc integer NOT NULL,
+    pro_imgurl character varying NOT NULL,
+    pro_id_lg character varying NOT NULL,
+    pro_ivaporcentaje integer,
+    pro_totalvta integer
+);
+
+
+ALTER TABLE public.productos OWNER TO postgres;
+
+--
+-- TOC entry 233 (class 1259 OID 99576)
+-- Name: productos_pro_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.productos_pro_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.productos_pro_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3083 (class 0 OID 0)
+-- Dependencies: 233
+-- Name: productos_pro_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.productos_pro_id_seq OWNED BY public.productos.pro_id;
+
+
+--
+-- TOC entry 234 (class 1259 OID 99578)
+-- Name: proveedores; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.proveedores (
+    pro_cod integer NOT NULL,
+    pro_empresa character varying,
+    pro_ruc character varying,
+    pro_direccion character varying,
+    pro_telefono character varying,
+    pro_correo character varying
+);
+
+
+ALTER TABLE public.proveedores OWNER TO postgres;
+
+--
+-- TOC entry 235 (class 1259 OID 99584)
+-- Name: proveedores_pro_cod_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.proveedores_pro_cod_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.proveedores_pro_cod_seq OWNER TO postgres;
+
+--
+-- TOC entry 3084 (class 0 OID 0)
+-- Dependencies: 235
+-- Name: proveedores_pro_cod_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.proveedores_pro_cod_seq OWNED BY public.proveedores.pro_cod;
+
+
+--
+-- TOC entry 236 (class 1259 OID 99586)
+-- Name: sucursal; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.sucursal (
+    su_codigo integer,
+    su_descri character varying,
+    su_direc character varying,
+    su_telef character varying
+);
+
+
+ALTER TABLE public.sucursal OWNER TO postgres;
+
+--
+-- TOC entry 237 (class 1259 OID 99592)
+-- Name: tmpdetallevta; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tmpdetallevta (
+    detvta_id_prod integer,
+    detvta_id_lector character varying,
+    detvta_nomb_pro character varying,
+    detvta_cant integer,
+    detvta_proveedor character varying,
+    detvta_fecha date,
+    detvta_num_deta integer,
+    detvta_preciogs numeric,
+    detvta_id integer NOT NULL,
+    detvta_preciototal numeric,
+    detvta_id_lg character varying,
+    detvta_caja character varying,
+    detvta_suc character varying,
+    detvta_iva5 numeric(10,0),
+    detvta_iva10 numeric(10,0),
+    detvta_exenta numeric(10,0)
+);
+
+
+ALTER TABLE public.tmpdetallevta OWNER TO postgres;
+
+--
+-- TOC entry 238 (class 1259 OID 99598)
+-- Name: tmpdetallevta_detvta_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.tmpdetallevta_detvta_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tmpdetallevta_detvta_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3085 (class 0 OID 0)
+-- Dependencies: 238
+-- Name: tmpdetallevta_detvta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.tmpdetallevta_detvta_id_seq OWNED BY public.tmpdetallevta.detvta_id;
+
+
+--
+-- TOC entry 239 (class 1259 OID 99600)
+-- Name: tmpdetpresu; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tmpdetpresu (
+    detvta_id_prod integer,
+    detvta_id_lector character varying,
+    detvta_nomb_pro character varying,
+    detvta_cant integer,
+    detvta_proveedor character varying,
+    detvta_fecha date,
+    detvta_num_deta integer,
+    detvta_preciogs numeric,
+    detvta_id integer DEFAULT nextval('public.tmpdetallevta_detvta_id_seq'::regclass) NOT NULL,
+    detvta_preciototal numeric,
+    detvta_id_lg character varying,
+    detvta_caja character varying,
+    detvta_suc character varying,
+    detvta_iva5 numeric(10,0),
+    detvta_iva10 numeric(10,0),
+    detvta_exenta numeric(10,0)
+);
+
+
+ALTER TABLE public.tmpdetpresu OWNER TO postgres;
+
+--
+-- TOC entry 240 (class 1259 OID 99607)
+-- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.usuarios (
+    usu_id integer NOT NULL,
+    usu_cedula numeric(15,0) NOT NULL,
+    usu_alias character varying(15) NOT NULL,
+    usu_nombre character varying(35) NOT NULL,
+    usu_privilegios character varying(15),
+    usu_pass numeric(15,0),
+    usu_urlimg character varying
+);
+
+
+ALTER TABLE public.usuarios OWNER TO postgres;
+
+--
+-- TOC entry 241 (class 1259 OID 99613)
+-- Name: usuarios_usu_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.usuarios_usu_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.usuarios_usu_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3086 (class 0 OID 0)
+-- Dependencies: 241
+-- Name: usuarios_usu_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.usuarios_usu_id_seq OWNED BY public.usuarios.usu_id;
+
+
+--
+-- TOC entry 2850 (class 2604 OID 99615)
+-- Name: apariencia apa_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.apariencia ALTER COLUMN apa_id SET DEFAULT nextval('public.apariencia_apa_id_seq'::regclass);
+
+
+--
+-- TOC entry 2851 (class 2604 OID 99616)
+-- Name: cierrecaja ci_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cierrecaja ALTER COLUMN ci_id SET DEFAULT nextval('public.cierrecaja_ci_id_seq'::regclass);
+
+
+--
+-- TOC entry 2852 (class 2604 OID 99617)
+-- Name: clientes cli_codigo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.clientes ALTER COLUMN cli_codigo SET DEFAULT nextval('public.clientes_cli_codigo_seq'::regclass);
+
+
+--
+-- TOC entry 2853 (class 2604 OID 99618)
+-- Name: cobranza cb_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cobranza ALTER COLUMN cb_id SET DEFAULT nextval('public.cobranza_cb_id_seq'::regclass);
+
+
+--
+-- TOC entry 2854 (class 2604 OID 99619)
+-- Name: config conf_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.config ALTER COLUMN conf_id SET DEFAULT nextval('public.config_conf_id_seq'::regclass);
+
+
+--
+-- TOC entry 2855 (class 2604 OID 99620)
+-- Name: contador cont_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contador ALTER COLUMN cont_id SET DEFAULT nextval('public.contador_cont_id_seq'::regclass);
+
+
+--
+-- TOC entry 2858 (class 2604 OID 99621)
+-- Name: detcobranza cbdeta_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.detcobranza ALTER COLUMN cbdeta_id SET DEFAULT nextval('public.detcobranza_cbdeta_id_seq'::regclass);
+
+
+--
+-- TOC entry 2859 (class 2604 OID 99622)
+-- Name: gastos gas_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.gastos ALTER COLUMN gas_id SET DEFAULT nextval('public.gastos_gas_id_seq'::regclass);
+
+
+--
+-- TOC entry 2860 (class 2604 OID 99623)
+-- Name: grupopro grup_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.grupopro ALTER COLUMN grup_id SET DEFAULT nextval('public.grupopro_grup_id_seq'::regclass);
+
+
+--
+-- TOC entry 2861 (class 2604 OID 99624)
+-- Name: ingreso ing_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ingreso ALTER COLUMN ing_id SET DEFAULT nextval('public.ingreso_ing_id_seq'::regclass);
+
+
+--
+-- TOC entry 2862 (class 2604 OID 99625)
+-- Name: movimiento_caja mov_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.movimiento_caja ALTER COLUMN mov_id SET DEFAULT nextval('public.movimiento_caja_mov_id_seq'::regclass);
+
+
+--
+-- TOC entry 2863 (class 2604 OID 99626)
+-- Name: pedido ped_num; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pedido ALTER COLUMN ped_num SET DEFAULT nextval('public.pedido_ped_num_seq'::regclass);
+
+
+--
+-- TOC entry 2866 (class 2604 OID 99627)
+-- Name: privilegios pri_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.privilegios ALTER COLUMN pri_id SET DEFAULT nextval('public.privilegios_pri_id_seq'::regclass);
+
+
+--
+-- TOC entry 2867 (class 2604 OID 99628)
+-- Name: productos pro_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.productos ALTER COLUMN pro_id SET DEFAULT nextval('public.productos_pro_id_seq'::regclass);
+
+
+--
+-- TOC entry 2868 (class 2604 OID 99629)
+-- Name: proveedores pro_cod; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.proveedores ALTER COLUMN pro_cod SET DEFAULT nextval('public.proveedores_pro_cod_seq'::regclass);
+
+
+--
+-- TOC entry 2869 (class 2604 OID 99630)
+-- Name: tmpdetallevta detvta_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tmpdetallevta ALTER COLUMN detvta_id SET DEFAULT nextval('public.tmpdetallevta_detvta_id_seq'::regclass);
+
+
+--
+-- TOC entry 2856 (class 2604 OID 99631)
+-- Name: tmpedido pedido_cod; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tmpedido ALTER COLUMN pedido_cod SET DEFAULT nextval('public.tmpedido_pedido_cod_seq'::regclass);
+
+
+--
+-- TOC entry 2871 (class 2604 OID 99632)
+-- Name: usuarios usu_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios ALTER COLUMN usu_id SET DEFAULT nextval('public.usuarios_usu_id_seq'::regclass);
+
+
+--
+-- TOC entry 2864 (class 2604 OID 99633)
+-- Name: venta vta_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.venta ALTER COLUMN vta_id SET DEFAULT nextval('public.venta_vta_id_seq'::regclass);
+
+
+--
+-- TOC entry 3017 (class 0 OID 99418)
+-- Dependencies: 196
+-- Data for Name: apariencia; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.config(
+	conf_licencia)
+	VALUES ('17-06-2021');
