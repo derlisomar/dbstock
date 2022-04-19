@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c8ec6cbe-1751-43d6-b5b1-f83a9f3dfc2d">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="6"/>
+	<queryString>
+		<![CDATA[SELECT  detvta_id_prod, detvta_nomb_pro, count(*), sum(detvta_cant), 
+	conf_denominacion, conf_url, conf_actividad FROM detallevta, config 
+     GROUP BY detvta_id_prod, detvta_nomb_pro, conf_denominacion , conf_url, conf_actividad
+     HAVING COUNT(*)>=1 order by sum desc;]]>
+	</queryString>
+	<field name="detvta_id_prod" class="java.lang.Integer"/>
+	<field name="detvta_nomb_pro" class="java.lang.String"/>
+	<field name="count" class="java.lang.Long"/>
+	<field name="sum" class="java.lang.Long"/>
+	<field name="conf_denominacion" class="java.lang.String"/>
+	<field name="conf_url" class="java.lang.String"/>
+	<field name="conf_actividad" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="296" y="3" width="235" height="26" uuid="1f5e2403-758e-4c8e-831e-769f7ca40e0d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE PRODUCTOS]]></text>
+			</staticText>
+			<image>
+				<reportElement x="3" y="17" width="167" height="52" uuid="2a303b6d-ceef-40c8-9ddd-512f4b4d77c7"/>
+				<imageExpression><![CDATA[$F{conf_url}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="170" y="29" width="361" height="20" uuid="019c2d83-a9f3-47f4-9f76-513aa316a389"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conf_denominacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="49" width="361" height="20" uuid="6601a6fd-3ffe-454f-8e60-82a8ebcbade4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{conf_actividad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="13" width="234" height="20" uuid="82d661fa-2397-4575-a9ff-6db22a82e92d"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Listado Total de Productos más Vendidos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<rectangle>
+				<reportElement x="2" y="8" width="520" height="20" forecolor="#E5E5E5" backcolor="#E5E5E5" uuid="0fb291cb-dc42-450c-bc78-73ea8aa7b3ce"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="3" y="8" width="49" height="20" uuid="985779c6-0f79-4350-bb74-538218c46f6d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="8" width="236" height="20" uuid="25a80469-0ea0-44af-81f8-33006e63b41c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="289" y="8" width="121" height="20" uuid="78d4cd28-32be-4b8e-a315-14c04028caa6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad veces Vendido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="8" width="113" height="20" uuid="6f9b061b-5fdb-40e0-b2c2-9f3cda9f7f65"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad Vendido]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<line>
+				<reportElement mode="Transparent" x="52" y="2" width="1" height="17" uuid="67d4f85c-8a0c-4592-ac3d-f0fb424678a7"/>
+			</line>
+			<line>
+				<reportElement mode="Transparent" x="288" y="2" width="1" height="17" uuid="d0197e5c-e3e5-48fa-90ff-a9fe4b90d3c1"/>
+			</line>
+			<line>
+				<reportElement mode="Transparent" x="409" y="2" width="1" height="17" uuid="cddb4593-d0fe-4dff-8a39-fb47bc241bc9"/>
+			</line>
+			<line>
+				<reportElement mode="Transparent" x="522" y="2" width="1" height="17" uuid="96608868-36f9-4018-855b-cfd03eb22ee1"/>
+			</line>
+			<line>
+				<reportElement mode="Transparent" x="2" y="2" width="1" height="17" uuid="a136bc60-9f15-4a2f-9f71-9b18f3f1504b"/>
+			</line>
+			<line>
+				<reportElement x="2" y="19" width="520" height="1" uuid="5b50dfc4-df7c-4e8a-bec2-05734a510a55"/>
+			</line>
+			<textField>
+				<reportElement x="296" y="3" width="110" height="17" uuid="58c342b7-c71d-452d-b1f7-99d043062e74"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="3" width="102" height="17" uuid="e85be861-6a34-46c2-b6af-23df793cffab"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="0" width="234" height="18" uuid="a79e03a8-8a57-4276-8518-1aeded81ae10"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{detvta_nomb_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="2" width="49" height="16" uuid="2fa4688c-e6e1-48d5-94e2-3b3c55be9873"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{detvta_id_prod}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

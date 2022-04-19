@@ -1,0 +1,7 @@
+***HOST***
+localhost
+***BASE DE DATOS***
+dbstock
+***CONTRASEÑA***
+admin
+

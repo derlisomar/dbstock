@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="55c1cdc9-83ae-4b59-8922-3b81bee4674a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="1320efe3-8d2c-43b9-a8ea-1ede9ecf03e6"/>
+	<parameter name="id_cierre" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select * from cierrecaja where ci_nro = $P{id_cierre}]]>
+	</queryString>
+	<field name="ci_id" class="java.lang.Integer"/>
+	<field name="ci_fechaape" class="java.sql.Date"/>
+	<field name="ci_fechacierre" class="java.sql.Date"/>
+	<field name="ci_usuariocierre" class="java.lang.String"/>
+	<field name="ci_nro" class="java.lang.Integer"/>
+	<field name="ci_credito" class="java.lang.Integer"/>
+	<field name="ci_cobranza" class="java.lang.Integer"/>
+	<field name="ci_ingreso" class="java.lang.Integer"/>
+	<field name="ci_contado" class="java.lang.Integer"/>
+	<field name="ci_egreso" class="java.lang.Integer"/>
+	<field name="ci_totalingreso" class="java.lang.Integer"/>
+	<field name="ci_totalegreso" class="java.lang.Integer"/>
+	<field name="ci_totalcaja" class="java.lang.Integer"/>
+	<field name="ci_usuarioaper" class="java.lang.String"/>
+	<field name="ci_montoaper" class="java.lang.Integer"/>
+	<field name="ci_estado" class="java.lang.Integer"/>
+	<field name="ci_sucursal" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102" splitType="Stretch">
+			<staticText>
+				<reportElement x="198" y="16" width="144" height="30" uuid="f4770070-7b56-400d-8eb5-352aee5908f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="16" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[CIERRE DE CAJA]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="5" y="48" width="83" height="43" uuid="1870be73-4539-4629-b889-588dc2e38be5"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="47" width="86" height="25" uuid="f9f57f5a-fcf9-48ac-98dd-bc3635e16e4a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CIERRE N°]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="13" y="69" width="62" height="20" uuid="652993c1-5ea7-4795-af15-563982847d88"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ci_nro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="71" width="94" height="20" uuid="79cb0080-0846-4535-9413-f688ed46e824"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ci_fechaape}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="73" width="103" height="20" uuid="1bf1f549-c2e9-43b2-a4e8-387f4f302581"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ci_fechacierre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="94" y="48" width="110" height="25" uuid="9a52fa87-dbcb-4961-934d-2d9b832a0c2c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Fecha de Apertura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="48" width="103" height="25" uuid="99208b36-e471-4575-9b32-293aa892d3c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Fecha de Cierre]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="342" y="70" width="203" height="20" uuid="0d885810-68b4-4544-9343-a32f40ad5602"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ci_usuariocierre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="342" y="46" width="203" height="25" uuid="d4e7717c-9e90-4b78-9342-cf28079e17fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Usuario]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="281" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="7" y="5" width="267" height="158" uuid="30d26a40-408d-4116-9c92-41603cc660e4"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="7" y="38" width="267" height="125" uuid="a0e37cb8-8c1b-4ede-ac7e-afe35e5e4425"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="283" y="5" width="267" height="158" uuid="47e4f537-85e0-402b-ace1-4a0cec0f4d82"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="283" y="38" width="267" height="125" uuid="12b68311-5b37-437a-af39-28f4249e2880"/>
+			</rectangle>
+			<textField>
+				<reportElement x="163" y="87" width="100" height="25" uuid="8791490c-a36f-40f5-b38a-301622e17df5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("###,###,###,###").format($F{ci_cobranza})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="163" y="123" width="100" height="25" uuid="e3a381e9-cc70-40a8-8ea4-20149589dd87"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("###,###,###,###").format($F{ci_ingreso})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="163" y="54" width="100" height="25" uuid="716482cd-300d-469c-8aba-c107c2e2ffa0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("###,###,###,###").format($F{ci_contado})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="54" width="115" height="25" uuid="dd0423e4-ca08-4885-8951-16fe40f73e30"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("###,###,###,###").format($F{ci_egreso})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="94" y="5" width="100" height="33" uuid="f632f8ab-5d68-4863-8737-26dfae273e2b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INGRESOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="54" width="148" height="25" uuid="54cf283c-c49c-4146-bb3f-003512cb0c0e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL VTA. CONTADO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="87" width="148" height="25" uuid="f211f08b-4b16-4aa6-88fb-4aa544d7141b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL COBRADO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="123" width="148" height="25" uuid="7c97b6b8-9d09-4d13-830b-32313e7ce08a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OTROS INGRESOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="5" width="100" height="33" uuid="a6e617a7-8ecc-4ec4-ae22-77dc25238e56"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EGRESOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="54" width="131" height="25" uuid="57494310-0603-457e-a57f-631c3dc08747"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL DE GASTOS:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="99" y="178" width="149" height="25" uuid="6099ce24-9231-41e1-b913-12c390b2278e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("###,###,###,###").format($F{ci_totalingreso})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="416" y="178" width="131" height="24" uuid="c72ad5bb-b309-4a0f-966a-4f0579dce43c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("###,###,###,###").format($F{ci_totalegreso})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="213" width="148" height="25" uuid="32edaf55-7cb5-4086-a311-448eb7c63d57"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("###,###,###,###").format($F{ci_totalcaja})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="178" width="69" height="25" uuid="69dea7f0-693f-4a48-af6e-b87fcb5182e6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL iNGRESO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="178" width="62" height="25" uuid="ea14fe09-32b1-4f63-850c-0d3e9c8e208b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="193" y="213" width="92" height="25" uuid="b24e971e-b30f-42b2-8399-30a22142f241"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL CAJA:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+</jasperReport>
